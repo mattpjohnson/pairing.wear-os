@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pair_menu_container"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/pair_menu_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            tools:ignore="HardcodedText" />
+
+    <TextView
+            android:id="@+id/pair_menu_pair"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/pair_menu_icon"
+            android:layout_toRightOf="@+id/pair_menu_icon"
+            android:layout_marginStart="10dp"
+            android:text="LP"
+            android:textColor="@color/ambient_mode_text"
+            android:textSize="24sp"
+            tools:ignore="HardcodedText"/>
+
+    <TextView
+            android:id="@+id/pair_menu_mnemonic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Mnemonic"
+            android:layout_toEndOf="@+id/pair_menu_pair"
+            android:layout_toRightOf="@+id/pair_menu_pair" android:layout_marginLeft="15dp"
+            android:layout_marginStart="10dp"/>
+</RelativeLayout>

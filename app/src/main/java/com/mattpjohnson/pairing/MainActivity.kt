@@ -1,5 +1,6 @@
 package com.mattpjohnson.pairing
 
+import android.content.Context
 import android.os.Bundle
 import android.support.wearable.activity.WearableActivity
 import android.support.wear.widget.WearableRecyclerView
@@ -20,6 +21,28 @@ class MainActivity : WearableActivity() {
         // Enables Always-on
         setAmbientEnabled()
 
+        val sharedPref = this.getSharedPreferences(
+            getString(R.string.preference_file_airtable_key), Context.MODE_PRIVATE)
+        var airtableApiKey = sharedPref.getString(getString(R.string.saved_airtable_api_key), "")
+        var airtableBase = sharedPref.getString(getString(R.string.saved_airtable_base), "")
+
+        if (airtableApiKey.isEmpty()) {
+            airtableApiKey = this.requestAirtableApiKeyFromUser()
+
+            with (sharedPref.edit()) {
+                putString(getString(R.string.saved_airtable_api_key), airtableApiKey)
+                apply()
+            }
+        }
+
+        if (airtableBase.isEmpty()) {
+            airtableBase = this.requestAirtableBaseFromUser()
+
+            with (sharedPref.edit()) {
+                putString(getString(R.string.saved_airtable_base), airtableBase)
+                apply()
+            }
+        }
 
         val recyclerView = findViewById<WearableRecyclerView>(R.id.first_letter_recycler)
         recyclerView.setHasFixedSize(true)
@@ -85,5 +108,19 @@ class MainActivity : WearableActivity() {
         }
 
         queue.add(stringRequest)
+    }
+
+
+    private fun requestAirtableApiKeyFromUser(): String {
+        return this.requestInputFromUser(getString(R.string.request_airtable_api_key_message))
+    }
+
+    private fun requestAirtableBaseFromUser(): String {
+        return this.requestInputFromUser(getString(R.string.request_airtable_base_message))
+    }
+
+    private fun requestInputFromUser(prompt: String): String {
+        // TODO: Make this a little more robust
+        return "Not yet implemented"
     }
 }
